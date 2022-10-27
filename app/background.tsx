@@ -11,8 +11,8 @@ type TMenuItem = {
 
 const menuItems: TMenuItem[] = [
   { name: "Home", link: "/" },
-  { name: "Photo", link: "/photo" },
-  { name: "Video", link: "/video" },
+  { name: "Projects", link: "/projects" },
+  { name: "Work", link: "/work" },
   { name: "About", link: "/about" },
 ];
 
