@@ -16,3 +16,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+header {
+  padding: 15px 32px 0;
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

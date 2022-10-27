@@ -3,7 +3,7 @@
 }
 
 .menu {
-  height: 100vh;
+  height: 85vh;
   display: flex;
   align-items: center;
 }
@@ -36,17 +36,21 @@
   height: 100%;
   width: 100%;
 
-  background-image: url("/bg-desktop-1.jpg");
-
   position: absolute;
   left: 0px;
   top: 0px;
   z-index: 0;
 
-  background-position: center 40%;
   background-size: 110vmax;
   background-repeat: no-repeat;
+  /* background-attachment: center; */
+  background-position: center calc(45% + 5% * var(--active-index, 0));
   opacity: 0.3;
+
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 
   transition: opacity 800ms ease, background-size 800ms ease,
     background-position 800ms ease;
@@ -55,14 +59,4 @@
 .menuItems:hover > .menuBackgroundImage {
   background-size: 100vmax;
   opacity: 0.1;
-}
-
-.menuBackgroundImage {
-  background-position: center calc(45% + 5% * var(--active-index, 0));
-}
-
-@media (max-width: 600px) {
-  .menuBackgroundImage {
-    background-image: url("/bg-mobile-1.jpg");
-  }
 }
