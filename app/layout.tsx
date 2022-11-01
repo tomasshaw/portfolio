@@ -1,6 +1,8 @@
 import "./globals.css";
 import Grain from "./grain";
 import Header from "./header";
+import Background from "./background";
+import { BackgroundContextProvider } from "./backgroundContext";
 
 export default function RootLayout({
   children,
@@ -17,7 +19,10 @@ export default function RootLayout({
       </head>
       <body>
         <Header />
-        {children}
+        <BackgroundContextProvider>
+          {children}
+          <Background />
+        </BackgroundContextProvider>
         <Grain />
       </body>
     </html>

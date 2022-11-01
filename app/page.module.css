@@ -41,9 +41,10 @@
   top: 0px;
   z-index: 0;
 
+  overflow: hidden;
+
   background-size: 110vmax;
   background-repeat: no-repeat;
-  /* background-attachment: center; */
   background-position: center calc(45% + 5% * var(--active-index, 0));
   opacity: 0.3;
 

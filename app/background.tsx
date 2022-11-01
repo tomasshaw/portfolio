@@ -1,50 +1,51 @@
 "use client";
-
-import { MutableRefObject, useEffect, useRef } from "react";
-import Link from "next/link";
 import styles from "./page.module.css";
+import { MutableRefObject, useEffect, useRef, useContext } from "react";
+import { BackgroundContext } from "./backgroundContext";
 
-type TMenuItem = {
-  name: string;
-  link: string;
-};
+type TViewportSize = "desktop" | "mobile" | null;
 
-const menuItems: TMenuItem[] = [
-  { name: "Home", link: "/" },
-  { name: "Projects", link: "/projects" },
-  { name: "Work", link: "/work" },
-  { name: "About", link: "/about" },
-];
-
-export default function Home() {
-  const bgRef = useRef() as MutableRefObject<HTMLDivElement>;
+export default function Background() {
+  const backgroundRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const { show, setBgRef } = useContext(BackgroundContext);
 
   useEffect(() => {
-    bgRef.current.style.backgroundImage =
-      "url(/bg-desktop-" + (Math.random() > 0.5 ? "1" : "2") + ".jpg)";
-  }, []);
+    if (backgroundRef.current) {
+      setBgRef(backgroundRef);
+    }
+  }, [setBgRef]);
 
-  const handleOnLinkMouseOver = (index: string) => {
-    bgRef.current.style.setProperty("--active-index", index);
-  };
+  useEffect(() => {
+    let lastKnownWindowSize: TViewportSize = null;
+    let newSize: TViewportSize = null;
+    const breakpoint = 600;
+    const updateBackground = () => {
+      if (backgroundRef.current) {
+        if (!show) {
+          backgroundRef.current.style.backgroundImage = "";
+          return;
+        }
+        if (window.innerWidth > breakpoint) {
+          newSize = "desktop";
+        } else {
+          newSize = "mobile";
+        }
+        if (newSize !== lastKnownWindowSize) {
+          lastKnownWindowSize = newSize;
+          backgroundRef.current.style.backgroundImage =
+            "url(/bg-" +
+            newSize +
+            "-" +
+            (Math.random() > 0.5 ? "1" : "2") +
+            ".jpg)";
+        }
+      }
+    };
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.menu}>
-        <div className={styles.menuItems}>
-          {menuItems.map(({ name, link }, index) => (
-            <Link
-              key={name}
-              href={link}
-              className={styles.menuItem}
-              onMouseOver={() => handleOnLinkMouseOver(index.toString())}
-            >
-              {name}
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div className={styles.menuBackgroundImage} ref={bgRef} />
-    </div>
-  );
+    updateBackground();
+    window.addEventListener("resize", updateBackground);
+    return () => window.removeEventListener("resize", updateBackground);
+  }, [show, backgroundRef]);
+
+  return <div className={styles.menuBackgroundImage} ref={backgroundRef} />;
 }
