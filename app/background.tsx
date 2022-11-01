@@ -25,11 +25,7 @@ export default function Background() {
           backgroundRef.current.style.backgroundImage = "";
           return;
         }
-        if (window.innerWidth > breakpoint) {
-          newSize = "desktop";
-        } else {
-          newSize = "mobile";
-        }
+        newSize = window.innerWidth > breakpoint ? "desktop" : "mobile";
         if (newSize !== lastKnownWindowSize) {
           lastKnownWindowSize = newSize;
           backgroundRef.current.style.backgroundImage =
