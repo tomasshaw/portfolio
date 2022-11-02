@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./background.css";
 import Grain from "./grain";
 import Header from "./header";
 import Background from "./background";

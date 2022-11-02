@@ -1,0 +1,29 @@
+Foto:
+	- Analogica
+	- Bandas
+	- Producto
+
+Video:
+	- VideoClips
+	- Promos
+	- Tesis
+	- Animación
+	- Experimental
+
+
+	HOME
+	PRODUCT
+	GALLERY
+
+
+TODO:
+
+- Header (Sara Lamberti?)
+- Footer (w/ <3 by Thomas Shaw)
+- i18n
+- Product
+- Mosaico
+
+
+
+

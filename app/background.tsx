@@ -1,5 +1,5 @@
 "use client";
-import styles from "./page.module.css";
+
 import { MutableRefObject, useEffect, useRef, useContext } from "react";
 import { BackgroundContext } from "./backgroundContext";
 
@@ -43,5 +43,5 @@ export default function Background() {
     return () => window.removeEventListener("resize", updateBackground);
   }, [show, backgroundRef]);
 
-  return <div className={styles.menuBackgroundImage} ref={backgroundRef} />;
+  return <div className="backgroundImage" ref={backgroundRef} />;
 }

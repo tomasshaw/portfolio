@@ -11,7 +11,7 @@ type TMenuItem = {
 };
 
 const menuItems: TMenuItem[] = [
-  { name: "Fotografia", link: "/photo" },
+  { name: "Fotografia", link: "/photogridtest" },
   { name: "Video", link: "/video" },
   { name: "Maquillaje", link: "/makeup" },
   { name: "Info", link: "/info" },

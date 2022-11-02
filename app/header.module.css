@@ -9,4 +9,9 @@
 .sticky {
   position: fixed;
   top: 0.6em;
+  z-index: 15;
+}
+
+.pointer {
+  cursor: pointer;
 }

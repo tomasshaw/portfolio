@@ -1,0 +1,25 @@
+.backgroundImage {
+  pointer-events: none;
+  height: 100%;
+  width: 100%;
+
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 0;
+
+  overflow: hidden;
+
+  background-size: 110vmax;
+  background-repeat: no-repeat;
+  background-position: center calc(45% + 5% * var(--active-index, 0));
+  opacity: 0.3;
+
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+
+  transition: opacity 800ms ease, background-size 800ms ease,
+    background-position 800ms ease;
+}
