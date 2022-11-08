@@ -39,7 +39,7 @@ export default function Page() {
     const handleOnScroll = () => {
       if (window.pageYOffset > 100) {
         console.log("scrollie 100px");
-        //document.body.style.backgroundColor = "white";
+        // add background to header logo
       }
     };
 
@@ -52,7 +52,7 @@ export default function Page() {
 
   return (
     <div className={styles.masonryWrapper}>
-      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 768: 2, 900: 3 }}>
         <Masonry gutter="1rem">
           <GridImage src={pic1} />
           <GridImage src={pic2} />

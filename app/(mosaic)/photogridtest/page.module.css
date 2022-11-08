@@ -9,3 +9,15 @@
   width: auto;
   height: auto;
 }
+
+@media (max-width: 900px) {
+  .gridImage {
+    max-width: calc(calc(100vw / 2) - 2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .gridImage {
+    max-width: calc(100vw - 2rem);
+  }
+}
