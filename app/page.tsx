@@ -3,20 +3,8 @@
 import { useContext } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
-import { BackgroundContext } from "./backgroundContext";
-
-type TMenuItem = {
-  name: string;
-  link: string;
-};
-
-const menuItems: TMenuItem[] = [
-  { name: "Fotografia", link: "/photogridtest" },
-  { name: "Bandas", link: "/bandas" },
-  { name: "Video", link: "/video" },
-  { name: "Maquillaje", link: "/makeup" },
-  { name: "Info", link: "/info" },
-];
+import { BackgroundContext } from "@/backgroundContext";
+import { menuItems } from "@/constants";
 
 export default function Home() {
   const { onMouseOver } = useContext(BackgroundContext);

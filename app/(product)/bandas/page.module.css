@@ -6,8 +6,18 @@
   width: 100%;
   height: calc(100vh - 100px);
   padding: 1rem;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 5px;
   /* box-shadow: 0 0 5px #ccc; */
   transition: all 0.3s ease;
+}
+
+.wrapper {
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  height: 90vh;
+}
+
+.wrapper > div {
+  scroll-snap-align: start;
 }

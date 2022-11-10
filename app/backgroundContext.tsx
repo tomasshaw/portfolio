@@ -11,6 +11,8 @@ type TBGContext = {
   onMouseOver: (index: string) => void;
   show: boolean;
   setShow: Dispatch<SetStateAction<boolean>>;
+  image: string | null;
+  setImage: Dispatch<SetStateAction<string | null>>;
   bgRef: MutableRefObject<HTMLDivElement> | null;
   setBgRef: Dispatch<SetStateAction<MutableRefObject<HTMLDivElement>>>;
 };
@@ -26,6 +28,7 @@ export const BackgroundContextProvider = ({
     null
   );
   const [show, setShow] = useState<boolean>(true);
+  const [image, setImage] = useState<string | null>(null);
 
   const handleOnLinkMouseOver = (index: string) => {
     if (bgRef) {
@@ -39,6 +42,8 @@ export const BackgroundContextProvider = ({
         onMouseOver: handleOnLinkMouseOver,
         show,
         setShow,
+        image,
+        setImage,
         bgRef,
         setBgRef,
       }}

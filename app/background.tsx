@@ -7,7 +7,7 @@ type TViewportSize = "desktop" | "mobile" | null;
 
 export default function Background() {
   const backgroundRef = useRef() as MutableRefObject<HTMLDivElement>;
-  const { show, setBgRef } = useContext(BackgroundContext);
+  const { show, setBgRef, image } = useContext(BackgroundContext);
 
   useEffect(() => {
     if (backgroundRef.current) {
@@ -25,6 +25,12 @@ export default function Background() {
           backgroundRef.current.style.backgroundImage = "";
           return;
         }
+
+        if (image) {
+          backgroundRef.current.style.backgroundImage = `url(/${image})`;
+          return;
+        }
+
         newSize = window.innerWidth > breakpoint ? "desktop" : "mobile";
         if (newSize !== lastKnownWindowSize) {
           lastKnownWindowSize = newSize;

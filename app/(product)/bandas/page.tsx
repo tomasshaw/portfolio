@@ -2,6 +2,7 @@
 import { useContext, useEffect } from "react";
 import styles from "./page.module.css";
 import { BackgroundContext } from "@/backgroundContext";
+import { bandas, TProducts } from "@/constants";
 
 export default function Page() {
   const { setShow } = useContext(BackgroundContext);
@@ -14,13 +15,29 @@ export default function Page() {
     };
   }, [setShow]);
 
-  // return <div style={{ border: "1px solid red", height: "100%" }}>Page</div>;
-  return <ProductItem />;
+  return (
+    <div className={styles.wrapper}>
+      {bandas.map((banda) => (
+        <ProductItem key={banda.title} product={banda} />
+      ))}
+    </div>
+  );
 }
 
-const ProductItem = ({ product = "" }: { product?: string }) => (
+/**
+ * Each section updates the background image
+ *
+ * on Scroll:
+ *    - fade out the background
+ *    - fade out the text
+ *    - scroll snap
+ *    - update background on scroll over the next section
+ *
+ */
+
+const ProductItem = ({ product }: { product: TProducts }) => (
   <div className={styles.productItem}>
-    <div>La Media Docena</div>
-    <div>{"Niceto Lado B \\ Buenos Aires - 2022"}</div>
+    <h2>{product.title}</h2>
+    <h5>{product.subtitle}</h5>
   </div>
 );
