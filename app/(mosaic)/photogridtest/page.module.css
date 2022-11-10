@@ -10,6 +10,14 @@
   object-fit: contain;
   width: auto;
   height: auto;
+  animation: fadeIn 1s ease-out;
+  animation-fill-mode: backwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
 }
 
 @media (max-width: 900px) {

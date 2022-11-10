@@ -5,20 +5,25 @@ import { BackgroundContext } from "@/backgroundContext";
 import { bandas, TProducts } from "@/constants";
 
 export default function Page() {
-  const { setShow } = useContext(BackgroundContext);
+  const { setImage } = useContext(BackgroundContext);
 
   useEffect(() => {
-    setShow(false);
+    setImage(bandas[0].image);
+    return () => setImage(null);
+  }, [setImage]);
 
-    return () => {
-      setShow(true);
-    };
-  }, [setShow]);
+  const handleOnClick = (image: string) => {
+    setImage(image);
+  };
 
   return (
     <div className={styles.wrapper}>
       {bandas.map((banda) => (
-        <ProductItem key={banda.title} product={banda} />
+        <ProductItem
+          key={banda.title}
+          product={banda}
+          onClick={handleOnClick}
+        />
       ))}
     </div>
   );
@@ -35,8 +40,18 @@ export default function Page() {
  *
  */
 
-const ProductItem = ({ product }: { product: TProducts }) => (
-  <div className={styles.productItem}>
+const ProductItem = ({
+  product,
+  onClick,
+}: {
+  product: TProducts;
+  onClick: any;
+}) => (
+  <div
+    className={styles.productItem}
+    id={product.id}
+    onClick={() => onClick(product.image)}
+  >
     <h2>{product.title}</h2>
     <h5>{product.subtitle}</h5>
   </div>

@@ -21,13 +21,13 @@ export default function Background() {
     const breakpoint = 600;
     const updateBackground = () => {
       if (backgroundRef.current) {
-        if (!show) {
-          backgroundRef.current.style.backgroundImage = "";
+        if (image) {
+          backgroundRef.current.style.backgroundImage = `url(/${image})`;
           return;
         }
 
-        if (image) {
-          backgroundRef.current.style.backgroundImage = `url(/${image})`;
+        if (!show) {
+          backgroundRef.current.style.backgroundImage = "";
           return;
         }
 
@@ -47,7 +47,7 @@ export default function Background() {
     updateBackground();
     window.addEventListener("resize", updateBackground);
     return () => window.removeEventListener("resize", updateBackground);
-  }, [show, backgroundRef]);
+  }, [show, backgroundRef, image]);
 
   return <div className="backgroundImage" ref={backgroundRef} />;
 }

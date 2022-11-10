@@ -27,7 +27,12 @@ import pic20 from "../../../public/images/20.png";
 import { BackgroundContext } from "../../backgroundContext";
 
 const GridImage = ({ src }: { src: string | StaticImageData }) => (
-  <Image src={src} alt={""} className={styles.gridImage} style={{}} />
+  <Image
+    src={src}
+    alt={""}
+    className={styles.gridImage}
+    style={{ animationDelay: `${Math.random()}s` }}
+  />
 );
 
 export default function Page() {
@@ -36,16 +41,7 @@ export default function Page() {
   useEffect(() => {
     setShow(false);
 
-    const handleOnScroll = () => {
-      if (window.pageYOffset > 100) {
-        console.log("scrollie 100px");
-        // add background to header logo
-      }
-    };
-
-    document.addEventListener("scroll", handleOnScroll);
     return () => {
-      document.removeEventListener("scroll", handleOnScroll);
       setShow(true);
     };
   }, [setShow]);
