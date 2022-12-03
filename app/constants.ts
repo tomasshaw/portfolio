@@ -39,13 +39,13 @@ export const bandas: TProducts[] = [
     subtitle: "Niceto Lado B \\ Buenos Aires - 2022",
     link: "/lamediadocena",
     id: "banda3",
-    image: "mediadocena.webp",
+    image: "3.webp",
   },
   {
     title: "Chill Beats to study / work",
     subtitle: "Youtube.com \\ pepito",
     link: "/youtube",
     id: "chillbeats",
-    image: "pinkfloyd.webp",
+    image: "4.webp",
   },
 ];

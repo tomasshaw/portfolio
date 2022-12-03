@@ -8,6 +8,7 @@ const useBackgroundPictureUpdater = () => {
   const { setImage } = useContext(BackgroundContext);
 
   useEffect(() => {
+    console.log("BGPU setimage");
     setImage(bandas[0].image);
     return () => setImage(null);
   }, [setImage]);
@@ -18,13 +19,28 @@ const useBackgroundPictureUpdater = () => {
 const useIntersectionObserver = () => {
   const [setImage] = useBackgroundPictureUpdater();
   const refs = useRef<Array<HTMLDivElement>>([]);
+  const currentRef = useRef<any>(null);
+  const timeoutRef = useRef<boolean>(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      timeoutRef.current = true;
+    }, 1000);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setImage(refs.current[entry.target.id].dataset.image);
+          if (entry.isIntersecting && timeoutRef.current) {
+            // if (entry.target.dataset.hasloaded === "false") {
+            //   entry.target.dataset.hasloaded = "true";
+            //   currentRef.current = refs.current[bandas[0].id];
+            // } else {
+            console.log("observer setimage", entry.target.dataset.image);
+            currentRef.current = entry.target;
+            setImage(entry.target.dataset.image);
+            // }
           }
         });
       },
@@ -40,22 +56,34 @@ const useIntersectionObserver = () => {
     return () => {
       observer.disconnect();
     };
-  }, [setImage]);
+  }, [setImage, currentRef]);
 
-  return [refs];
+  return [refs, currentRef];
 };
 
 export default function Page() {
-  const [setImage] = useBackgroundPictureUpdater();
-  const [productsRef] = useIntersectionObserver();
-  // const productsRef = useRef<Array<HTMLDivElement>>([]);
+  const [productsRef, currentProduct] = useIntersectionObserver();
+  const { setBlur } = useContext(BackgroundContext);
+  const wrapperRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+  useBackgroundPictureUpdater();
 
-  const handleOnClick = (image: string) => {
-    setImage(image);
-  };
+  useEffect(() => {
+    const ref = wrapperRef.current;
+    const handleScroll = () => {
+      if (currentProduct.current) {
+        const currDiv = currentProduct.current.getBoundingClientRect();
+        const normalizedTopDiff = Math.abs(currDiv.top - 62);
+        console.log(normalizedTopDiff / 100);
+        setBlur(Math.trunc(normalizedTopDiff / 30));
+      }
+    };
+
+    ref.addEventListener("scroll", handleScroll);
+    return () => ref.removeEventListener("scroll", handleScroll);
+  }, [productsRef, currentProduct, setBlur]);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={wrapperRef}>
       {bandas.map((banda) => (
         <ProductItem
           key={banda.title}
@@ -63,7 +91,6 @@ export default function Page() {
             (productsRef.current[banda.id] = el)
           }
           product={banda}
-          onClick={handleOnClick}
         />
       ))}
     </div>
@@ -83,19 +110,17 @@ export default function Page() {
 
 const ProductItem = ({
   product,
-  onClick,
   wrapperRef,
 }: {
   product: TProducts;
-  onClick: any;
   wrapperRef: any;
 }) => (
   <div
     className={styles.productItem}
     id={product.id}
-    onClick={() => onClick(product.image)}
     ref={wrapperRef}
     data-image={product.image}
+    data-hasloaded={"false"}
   >
     <h2>{product.title}</h2>
     <h5>{product.subtitle}</h5>

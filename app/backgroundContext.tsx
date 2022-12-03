@@ -5,6 +5,7 @@ import {
   MutableRefObject,
   Dispatch,
   SetStateAction,
+  useEffect,
 } from "react";
 
 type TBGContext = {
@@ -13,6 +14,8 @@ type TBGContext = {
   setShow: Dispatch<SetStateAction<boolean>>;
   image: string | null;
   setImage: Dispatch<SetStateAction<string | null>>;
+  blur: number;
+  setBlur: Dispatch<SetStateAction<number>>;
   bgRef: MutableRefObject<HTMLDivElement> | null;
   setBgRef: Dispatch<SetStateAction<MutableRefObject<HTMLDivElement>>>;
 };
@@ -29,6 +32,13 @@ export const BackgroundContextProvider = ({
   );
   const [show, setShow] = useState<boolean>(true);
   const [image, setImage] = useState<string | null>(null);
+  const [blur, setBlur] = useState<number>(0);
+
+  useEffect(() => {
+    if (bgRef?.current) {
+      bgRef.current.style.filter = `blur(${blur}px)`;
+    }
+  }, [blur]);
 
   const handleOnLinkMouseOver = (index: string) => {
     if (bgRef) {
@@ -44,6 +54,8 @@ export const BackgroundContextProvider = ({
         setShow,
         image,
         setImage,
+        blur,
+        setBlur,
         bgRef,
         setBgRef,
       }}
