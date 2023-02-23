@@ -1,6 +1,7 @@
 "use client";
 import styles from "./header.module.css";
 import Link from "next/link";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { useDarkMode } from "./hooks";
 
 // ☀️
@@ -14,12 +15,13 @@ export default function Header() {
         S / L
       </Link>
       <span />
-      <span
-        onClick={toggleDarkMode}
-        className={styles.pointer}
-        title="Toggle Dark Mode"
-      >
-        {darkMode ? "☀️" : "🌑"} Sara Lamberti
+      <span className={styles.darkModeToggle} title="Toggle Dark Mode">
+        <DarkModeSwitch
+          checked={darkMode}
+          onChange={toggleDarkMode}
+          className={styles.icon}
+        />
+        <span className={styles.text}>Sara Lamberti</span>
       </span>
     </header>
   );

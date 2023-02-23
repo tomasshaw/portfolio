@@ -16,7 +16,7 @@ export default function RootLayout({
       <head>
         <title>Portfolio</title>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta name="description" content="Sara's Portfolio" />
+        <meta name="description" content="Sara Lamberti Portfolio" />
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
