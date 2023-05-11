@@ -1,10 +1,9 @@
-import "./globals.css";
-import "./background.css";
+import "@/globals.css";
+import "@/background/background.css";
 import Grain from "@/grain";
-import Header from "@/header";
-import Background from "@/background";
-import Footer from "@/footer";
-import { BackgroundContextProvider } from "@/backgroundContext";
+import Header from "@/header/";
+import Footer from "@/footer/";
+import Background, { BackgroundContextProvider } from "@/background/";
 
 export default function RootLayout({
   children,

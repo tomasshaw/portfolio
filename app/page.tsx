@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import clsx from "clsx";
 import { Cormorant_Garamond } from "next/font/google";
-import { BackgroundContext } from "@/backgroundContext";
+import { BackgroundContext } from "@/background/backgroundContext";
 import { menuItems } from "@/constants";
 
 const font = Cormorant_Garamond({

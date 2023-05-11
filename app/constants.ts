@@ -1,15 +1,11 @@
-type TMenuItem = {
+type TBaseMenuItem = {
   name: string;
   link: string;
 };
 
-export const menuItems: TMenuItem[] = [
-  { name: "Fotografia", link: "/photogridtest" },
-  { name: "Bandas", link: "/bandas" },
-  { name: "Video", link: "/video" },
-  { name: "Maquillaje", link: "/makeup" },
-  { name: "Info", link: "/info" },
-];
+type TMenuItem = TBaseMenuItem & {
+  submenu?: TBaseMenuItem[];
+};
 
 export type TProducts = {
   title: string;
@@ -18,6 +14,37 @@ export type TProducts = {
   image: string;
   id: string;
 };
+
+export const fotoSubmenuItems: TMenuItem[] = [
+  { name: "Bandas", link: "/bandas" },
+  { name: "Fotoproducto", link: "/fotoproducto" },
+  { name: "Retratos", link: "/retratos" },
+  { name: "Analogicas", link: "/analogicas" },
+];
+
+export const menuItems: TMenuItem[] = [
+  {
+    name: "Fotografia",
+    link: "/photogridtest",
+    submenu: fotoSubmenuItems,
+  },
+  {
+    name: "Bandas",
+    link: "/bandas",
+  },
+  {
+    name: "Video",
+    link: "/video",
+  },
+  {
+    name: "Maquillaje",
+    link: "/makeup",
+  },
+  {
+    name: "Info",
+    link: "/info",
+  },
+];
 
 export const bandas: TProducts[] = [
   {

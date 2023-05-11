@@ -24,7 +24,7 @@ import pic17 from "../../../public/images/17.png";
 import pic18 from "../../../public/images/18.png";
 import pic19 from "../../../public/images/19.png";
 import pic20 from "../../../public/images/20.png";
-import { BackgroundContext } from "../../backgroundContext";
+import { BackgroundContext } from "@/background";
 
 const GridImage = ({ src }: { src: string | StaticImageData }) => (
   <Image

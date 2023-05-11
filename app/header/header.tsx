@@ -1,8 +1,9 @@
 "use client";
 import styles from "./header.module.css";
 import Link from "next/link";
+import clsx from "clsx";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
-import { useDarkMode } from "./hooks";
+import { useDarkMode } from "@/hooks";
 
 // ☀️
 // 🌑
@@ -11,7 +12,10 @@ export default function Header() {
   const [darkMode, toggleDarkMode] = useDarkMode();
   return (
     <header className={styles.header}>
-      <Link className={styles.sticky} href="/">
+      <Link
+        className={clsx(styles.sticky, styles.slightlyTransparent)}
+        href="/"
+      >
         S / L
       </Link>
       <span />
@@ -21,7 +25,9 @@ export default function Header() {
           onChange={toggleDarkMode}
           className={styles.icon}
         />
-        <span className={styles.text}>Sara Lamberti</span>
+        <span className={clsx(styles.text, styles.slightlyTransparent)}>
+          Sara Lamberti
+        </span>
       </span>
     </header>
   );

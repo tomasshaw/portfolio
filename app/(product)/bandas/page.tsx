@@ -1,7 +1,7 @@
 "use client";
 import { useContext, useEffect, useRef } from "react";
 import styles from "./page.module.css";
-import { BackgroundContext } from "@/backgroundContext";
+import { BackgroundContext } from "@/background";
 import { bandas, TProducts } from "@/constants";
 
 const useBackgroundPictureUpdater = () => {
