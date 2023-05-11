@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export const useDarkMode = (): [boolean, () => void] => {
   const [darkMode, setDarkMode] = useState<boolean>(
-    window.localStorage.getItem("darkMode") === "true"
+    localStorage.getItem("darkMode") === "true"
   );
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
