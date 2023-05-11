@@ -4,11 +4,14 @@ import { useContext } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 import clsx from "clsx";
-import { Cormorant_Garamond } from "@next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 import { BackgroundContext } from "@/backgroundContext";
 import { menuItems } from "@/constants";
 
-const font = Cormorant_Garamond({ weight: "400" });
+const font = Cormorant_Garamond({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Home() {
   const { onMouseOver } = useContext(BackgroundContext);
