@@ -2,7 +2,7 @@
 import { useContext, useEffect, useRef } from "react";
 import styles from "./page.module.css";
 import { BackgroundContext } from "@/background";
-import { bandas, TProducts } from "@/constants";
+import { bandas } from "@/constants";
 
 const useBackgroundPictureUpdater = () => {
   const { setImage } = useContext(BackgroundContext);

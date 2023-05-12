@@ -38,7 +38,7 @@ export const BackgroundContextProvider = ({
     if (bgRef?.current) {
       bgRef.current.style.filter = `blur(${blur}px)`;
     }
-  }, [blur]);
+  }, [blur, bgRef]);
 
   const handleOnLinkMouseOver = (index: string) => {
     if (bgRef) {

@@ -3,13 +3,16 @@
 }
 
 .menu {
+  --menu-item-size: clamp(2rem, 6vw, 10vh);
+
   height: 85vh;
+  max-height: 85vh;
   display: flex;
   align-items: center;
 }
 
 .menuItem {
-  font-size: clamp(2rem, 6vw, 6rem);
+  font-size: var(--menu-item-size);
   text-decoration: none;
   padding: clamp(0.25rem, 0.5vw, 1rem) 0rem;
 
@@ -19,14 +22,41 @@
 
 .menuItems {
   margin-left: clamp(3rem, 15vw, 32rem);
+  max-height: 85vh;
 }
 
 .menuItems:hover > .menuItem {
   opacity: 0.3;
-  font-size: clamp(2rem, 6vw, 6rem);
+  font-size: var(--menu-item-size);
 }
 
 .menuItems:hover > .menuItem:hover {
   opacity: 1;
-  font-size: clamp(3rem, 7vw, 7rem);
+  font-size: clamp(3rem, 7vw, 12vh);
+}
+
+.submenuItem {
+  opacity: 0.3;
+}
+
+.submenuItem:hover {
+  opacity: 1;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.submenuItem {
+  font-size: clamp(1rem, 3vw, 4vh);
+  padding-left: clamp(2rem, 5vw, 6rem);
+  animation-name: slideIn;
+  animation-duration: 400ms;
 }
