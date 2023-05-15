@@ -2,16 +2,16 @@
 import { useEffect, useState } from "react";
 
 export const useDarkMode = (): [boolean, () => void] => {
-  const [darkMode, setDarkMode] = useState<boolean>(
-    typeof window !== undefined
-      ? localStorage.getItem("darkMode") === "true"
-      : false
-  );
+  const [darkMode, setDarkMode] = useState<boolean>(true);
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
   useEffect(() => {
-    // Set global dark mode state
+    // TODO: re-implement localstorage
+    // typeof window !== undefined
+    //   ? window.localStorage.getItem("darkMode") === "true"
+    //   : false;
+
     document.documentElement.setAttribute(
       "data-theme",
       darkMode ? "dark" : "light"
