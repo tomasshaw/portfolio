@@ -22,7 +22,7 @@ export default function Background() {
     const updateBackground = () => {
       if (backgroundRef.current) {
         if (image) {
-          backgroundRef.current.style.backgroundImage = `url(/${image})`;
+          backgroundRef.current.style.backgroundImage = `url(/portfolio/${image})`;
           return;
         }
 
@@ -35,7 +35,7 @@ export default function Background() {
         if (newSize !== lastKnownWindowSize) {
           lastKnownWindowSize = newSize;
           backgroundRef.current.style.backgroundImage =
-            "url(/bg-" +
+            "url(/portfolio/bg-" +
             newSize +
             "-" +
             (Math.random() > 0.5 ? "1" : "2") +
