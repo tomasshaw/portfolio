@@ -37,8 +37,9 @@ const useIntersectionObserver = () => {
             //   entry.target.dataset.hasloaded = "true";
             //   currentRef.current = refs.current[bandas[0].id];
             // } else {
-            console.log("observer setimage", entry.target.dataset.image);
+            // console.log("observer setimage", entry.target.dataset.image);
             currentRef.current = entry.target;
+            /* @ts-ignore */
             setImage(entry.target.dataset.image);
             // }
           }
