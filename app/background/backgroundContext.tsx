@@ -8,6 +8,8 @@ import {
   useEffect,
 } from "react";
 
+type TMutableRefObject = MutableRefObject<HTMLDivElement> | null;
+
 type TBGContext = {
   onMouseOver: (index: string) => void;
   show: boolean;
@@ -16,8 +18,8 @@ type TBGContext = {
   setImage: Dispatch<SetStateAction<string | null>>;
   blur: number;
   setBlur: Dispatch<SetStateAction<number>>;
-  bgRef: MutableRefObject<HTMLDivElement> | null;
-  setBgRef: Dispatch<SetStateAction<MutableRefObject<HTMLDivElement>>>;
+  bgRef: TMutableRefObject;
+  setBgRef: Dispatch<SetStateAction<TMutableRefObject>>;
 };
 
 export const BackgroundContext = createContext<TBGContext>(undefined as any);
@@ -27,9 +29,7 @@ export const BackgroundContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [bgRef, setBgRef] = useState<MutableRefObject<HTMLDivElement> | null>(
-    null
-  );
+  const [bgRef, setBgRef] = useState<TMutableRefObject>(null);
   const [show, setShow] = useState<boolean>(true);
   const [image, setImage] = useState<string | null>(null);
   const [blur, setBlur] = useState<number>(0);
