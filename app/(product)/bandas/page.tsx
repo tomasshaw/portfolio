@@ -8,7 +8,7 @@ const useBackgroundPictureUpdater = () => {
   const { setImage } = useContext(BackgroundContext);
 
   useEffect(() => {
-    console.log("BGPU setimage");
+    // console.log("BGPU setimage");
     setImage(bandas[0].image);
     return () => setImage(null);
   }, [setImage]);
@@ -74,7 +74,7 @@ export default function Page() {
       if (currentProduct.current) {
         const currDiv = currentProduct.current.getBoundingClientRect();
         const normalizedTopDiff = Math.abs(currDiv.top - 62);
-        console.log(normalizedTopDiff / 100);
+        // console.log(normalizedTopDiff / 100);
         setBlur(Math.trunc(normalizedTopDiff / 30));
       }
     };

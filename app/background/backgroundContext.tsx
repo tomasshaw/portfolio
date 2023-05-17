@@ -10,16 +10,18 @@ import {
 
 type TMutableRefObject = MutableRefObject<HTMLDivElement> | null;
 
+type TDispatchSetStateAction<T> = Dispatch<SetStateAction<T>>;
+
 type TBGContext = {
   onMouseOver: (index: string) => void;
   show: boolean;
-  setShow: Dispatch<SetStateAction<boolean>>;
+  setShow: TDispatchSetStateAction<boolean>;
   image: string | null;
-  setImage: Dispatch<SetStateAction<string | null>>;
+  setImage: TDispatchSetStateAction<string | null>;
   blur: number;
-  setBlur: Dispatch<SetStateAction<number>>;
+  setBlur: TDispatchSetStateAction<number>;
   bgRef: TMutableRefObject;
-  setBgRef: Dispatch<SetStateAction<TMutableRefObject>>;
+  setBgRef: TDispatchSetStateAction<TMutableRefObject>;
 };
 
 export const BackgroundContext = createContext<TBGContext>(undefined as any);
