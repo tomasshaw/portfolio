@@ -26,7 +26,10 @@ export default function RootLayout({
           name="description"
           content="Sara Lamberti's Photography Portfolio"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="icon"
+          href={process.env.NEXT_PUBLIC_BASE_PATH + "/favicon.ico"}
+        />
       </head>
       <body>
         <Header />
