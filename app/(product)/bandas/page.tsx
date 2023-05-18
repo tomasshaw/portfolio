@@ -8,7 +8,6 @@ const useBackgroundPictureUpdater = () => {
   const { setImage } = useContext(BackgroundContext);
 
   useEffect(() => {
-    // console.log("BGPU setimage");
     setImage(bandas[0].image);
     return () => setImage(null);
   }, [setImage]);

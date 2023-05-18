@@ -15,21 +15,19 @@ export default function Background() {
     }
   }, [setBgRef]);
 
+  // on resize
   useEffect(() => {
     let lastKnownWindowSize: TViewportSize = null;
     let newSize: TViewportSize = null;
     const breakpoint = 600;
+
     const updateBackground = () => {
       if (backgroundRef.current) {
-        if (image) {
-          backgroundRef.current.style.backgroundImage = `url(${process.env.NEXT_PUBLIC_BASE_PATH}/${image})`;
-          return;
-        }
-
         if (!show) {
           backgroundRef.current.style.backgroundImage = "";
           return;
         }
+        if (image) return;
 
         newSize = window.innerWidth > breakpoint ? "desktop" : "mobile";
         if (newSize !== lastKnownWindowSize) {
@@ -48,6 +46,24 @@ export default function Background() {
     window.addEventListener("resize", updateBackground);
     return () => window.removeEventListener("resize", updateBackground);
   }, [show, backgroundRef, image]);
+
+  // on image change
+  useEffect(() => {
+    const updateBackground = () => {
+      if (backgroundRef.current) {
+        if (!show) {
+          backgroundRef.current.style.backgroundImage = "";
+          return;
+        }
+        if (image) {
+          backgroundRef.current.style.backgroundImage = `url(${process.env.NEXT_PUBLIC_BASE_PATH}/${image})`;
+          return;
+        }
+      }
+    };
+
+    updateBackground();
+  }, [image, show]);
 
   return <div className="backgroundImage" ref={backgroundRef} />;
 }
